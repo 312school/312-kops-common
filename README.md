@@ -30,12 +30,12 @@
         --cloud=aws \
         --zones=${DEPLOY_REGION}a \
         --master-count 1 \
-        --master-size t3.micro \
+        --master-size t3.medium \
         --node-count 2 \
         --node-size t3.micro \
         --kubernetes-version "$K8S_VERSION" \
-        --networking calico \
-        --api-loadbalancer-class classic \
+        --networking cilium \
+        --api-loadbalancer-class network \
         --discovery-store=s3://${BUCKET_FOR_OIDC}/${CLUSTER_NAME}/discovery
     
     # create resources, should be run after above dry-run
