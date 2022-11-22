@@ -75,6 +75,8 @@
 - Both Master and Worker nodes are launched in separate AutoScaling Groups
     - Stopping master and worker nodes manually will only cause AutoScaling Group to create more EC2s as a replacement
         - so proper way to reduce costs is scaling in the ASG group sizes down to 0 (zero)
+    ![Screenshot 2022-11-21 at 8 53 15 PM](https://user-images.githubusercontent.com/43100287/203209740-69566769-1573-49bb-a7d5-d5e314a689fe.png)
+
 - **Cost of the Resources Disclaimer**:
     - **To make sure you incur very minimal charges**:
         in AWS Console, set desired and minimum ASG size for both master and worker node AutoScaling Groups to 0(zero) when you don't need the cluster.
