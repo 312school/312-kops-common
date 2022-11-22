@@ -81,6 +81,11 @@
     - Therefore all of your k8s deployments, configurations and other HA resources will re-run on next cluster restart.
 - cilium CNI is used as a network plugin because it supports VPC ENI networking and Kubernetes Network Policies(useful for CKAD/CKA exam hands-on preparation).
 - bucket names are globally unique in S3, therefore we have added `-${account}` suffix to keep your bucket names unique and consistent at the same time.
+- kOps creates a Network Load Balancer that exposes cluster's Kubernetes API to public with a static DNS name.
+    - This allows you to connect to K8s cluster anywhere from the internet including from your local machine.
+    - This NLB address is written down by kOps into your local ~/.kube/config file when creating the cluster with kOps.
+        - if you have switched to another cluster later on(ex: to eks), you can switch back to this kOps cluster using `kubectl config use-context 312-kops.k8s.local`
+    - AWS provides NLB in free tier for a whole month.
 - **Cost of the Resources Disclaimer**:
     - **To make sure you incur very minimal charges**:
         in AWS Console, set desired and minimum ASG size for both master and worker node AutoScaling Groups to 0(zero) when you don't need the cluster.
