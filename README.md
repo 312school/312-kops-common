@@ -73,19 +73,8 @@
 
 ## Notes
 - Both Master and Worker nodes are launched in separate AutoScaling Groups
-- Stopping master and worker nodes manually will only cause AutoScaling Group to create more EC2s as a replacement
-    - so proper way to reduce costs is scaling in the ASG group sizes down to 0 (zero)
-- Official kOps documentation - https://kops.sigs.k8s.io/
-- `etcd` data is stored on 2 dedicated EBS volumes that are attached to the master node. When master node is deleted, the etcd data volumes stay on AWS.
-    - They only get deleted when you delete the cluster with kOps.
-    - Therefore all of your k8s deployments, configurations and other HA resources will re-run on next cluster restart.
-- cilium CNI is used as a network plugin because it supports VPC ENI networking and Kubernetes Network Policies(useful for CKAD/CKA exam hands-on preparation).
-- bucket names are globally unique in S3, therefore we have added `-${account}` suffix to keep your bucket names unique and consistent at the same time.
-- kOps creates a Network Load Balancer that exposes cluster's Kubernetes API to public with a static DNS name.
-    - This allows you to connect to K8s cluster anywhere from the internet including from your local machine.
-    - This NLB address is written down by kOps into your local ~/.kube/config file when creating the cluster with kOps.
-        - if you have switched to another cluster later on(ex: to eks), you can switch back to this kOps cluster using `kubectl config use-context 312-kops.k8s.local`
-    - AWS provides NLB in free tier for a whole month.
+    - Stopping master and worker nodes manually will only cause AutoScaling Group to create more EC2s as a replacement
+        - so proper way to reduce costs is scaling in the ASG group sizes down to 0 (zero)
 - **Cost of the Resources Disclaimer**:
     - **To make sure you incur very minimal charges**:
         in AWS Console, set desired and minimum ASG size for both master and worker node AutoScaling Groups to 0(zero) when you don't need the cluster.
@@ -100,3 +89,16 @@
         - if you keep all nodes running for a half-month, approximate cost in us-east-1: `$15.048(t3.medium) + $2.88(gp3) = $17.928`
         - if you keep all nodes running for 40 hours/week, approximate cost in us-east-1: `$6.688(t3.medium) + $2.88(gp3) = $9.568`
         - if you keep all nodes running for 20 hours/week, approximate cost in us-east-1: `$3.344(t3.medium) + $2.88(gp3) = $6.224`
+
+## Additional knowledge
+- bucket names are globally unique in S3, therefore we have added `-${account}` suffix to keep your bucket names unique and consistent at the same time.
+- kOps creates a Network Load Balancer that exposes cluster's Kubernetes API to public with a static DNS name.
+    - This allows you to connect to K8s cluster anywhere from the internet including from your local machine.
+    - This NLB address is written down by kOps into your local ~/.kube/config file when creating the cluster with kOps.
+        - if you have switched to another cluster later on(ex: to eks), you can switch back to this kOps cluster using `kubectl config use-context 312-kops.k8s.local`
+    - AWS provides NLB in free tier for a whole month.
+- `etcd` data is stored on 2 dedicated EBS volumes that are attached to the master node. When master node is deleted, the etcd data volumes stay on AWS.
+    - They only get deleted when you delete the cluster with kOps.
+    - Therefore all of your k8s deployments, configurations and other HA resources will re-run on next cluster restart.
+- cilium CNI is used as a network plugin because it supports VPC ENI networking and Kubernetes Network Policies(useful for CKAD/CKA exam hands-on preparation).
+- Official kOps documentation - https://kops.sigs.k8s.io/
