@@ -82,7 +82,7 @@
         in AWS Console, set desired and minimum ASG size for both master and worker node AutoScaling Groups to 0(zero) when you don't need the cluster.
         and then bring back master ASG to 1 and workers ASG to 2 whenever you need a cluster.
     - Master node uses t3.medium type which is the minimum for it's needs. It will cost about $30 if you keep it running for a whole month.
-    - Worker nodes use t3.micro instances which are in free tier, but you will pay extra if you keep at least 2 running for a whole month. t3.micro instance that's under free tier will cost $7.5/month.
+    - Worker nodes use t3.micro instances which are in free tier, but you will pay extra if you keep at least 2 running for a whole month. t3.micro instance that's over free tier will cost $7.5/month.
     - EBS volumes(AWS has 30GB free tier limit, and $0.08/GB-month afterwards):
         - master node has 3 volumes: 1 for itself - 10GB. 2 for etcd stores - each 20GB.
         - worker nodes have 1 volume each - 8GB.
