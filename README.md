@@ -87,7 +87,7 @@
         - master node has 3 volumes: 1 for itself - 10GB. 2 for etcd stores - each 20GB.
         - worker nodes have 1 volume each - 8GB.
     - So assuming you don't resize your ASG to 0 as recommended above when you don't need cluster, total estimates are:
-        - if you keep all nodes running for a whole month, approximate cost in us-east-1: `$30.096(t3.medium) + $2.88(gp3) + $7.488 = $40.464`
+        - if you keep all nodes running for a whole month, approximate cost in us-east-1: `$30.096(t3.medium) + $2.88(gp3) + $7.488(t3.micro) = $40.464`
         - if you keep all nodes running for a half-month, approximate cost in us-east-1: `$15.048(t3.medium) + $2.88(gp3) = $17.928`
         - if you keep all nodes running for 40 hours/week, approximate cost in us-east-1: `$6.688(t3.medium) + $2.88(gp3) = $9.568`
         - if you keep all nodes running for 20 hours/week, approximate cost in us-east-1: `$3.344(t3.medium) + $2.88(gp3) = $6.224`
