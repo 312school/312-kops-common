@@ -44,8 +44,7 @@
     # to list contexts in your current ~/.kube/config
     kubectl config get-contexts
 
-
-    # DANGER ZONE: to delete cluster.
+## DANGER ZONE: To delete cluster:
     # Use this also to start from scratch if you mess up somewhere in the installation process.
     make destroy
 
@@ -57,20 +56,20 @@
 
 - **Cost of the Resources Disclaimer**:
     - **To make sure you incur very minimal charges**:
-        in AWS Console, set desired and minimum ASG size for both master and worker node AutoScaling Groups to 0(zero) when you don't need the cluster.
-        and then bring back master ASG to 1 and workers ASG to 2 whenever you need a cluster.
+        - in AWS Console, set desired and minimum ASG size for both master and worker node AutoScaling Groups to 0(zero) when you don't need the cluster.
+        - and then bring back master ASG to 1 and workers ASG to 2 whenever you need a cluster.
     - This installation uses Spot instances for both Master and Worker nodes.
         - If you do not wish to use spot instances, comment out 2 "maxPrice: ..." lines in kops-config.yaml. But it will result in more expenses.
     - Master and Worker nodes use t3.medium type which is the minimum for it's needs. Spot instances typically run %70 cheaper than on-demand.
     - EBS volumes(AWS has 30GB free tier limit, and $0.08/GB-month afterwards):
         - master node has 3 volumes: 1 for itself - 10GB. 2 for etcd stores - each 2GB.
         - worker nodes have 1 volume each - 10GB.
-    - Cost estimates will depend on spot instance pricing in a current market.
-        - EBS volumes costs should very low since you almost fall under free tier (34GB in total, free tier is 30GB)
+    - **Cost estimates will depend on spot instance pricing in a current market.**
+        - EBS volumes cost should very low since you almost fall under free tier (34GB in total, free tier is 30GB)
         - ELB created for exposing Kube API server publicly falls under free tier if you don't run additional load balancers
         - Main expense will be t3.medium instances that run for about $10 a month each
-            - but if you keep resizing your ASGs regularly as recommended, costs should be minimal.
-            - for example running them for 20 hours/week should cost around $3.6/month for all 3 instances ($1.2/month/each).
+            - **but if you keep resizing your ASGs regularly as recommended, costs should be minimal.**
+            - **for example running them for 20 hours/week should cost around $3.6/month for all 3 instances ($1.2/month/each).**
 
 ## Additional knowledge
 - bucket names are globally unique in S3, therefore we have added `-${account}` suffix to keep your bucket names unique and consistent at the same time.
