@@ -68,6 +68,9 @@
 
     # DANGER ZONE: to delete cluster.
     # Use this also to start from scratch if you mess up somewhere in the installation process.
+    account=$(aws sts get-caller-identity --query 'Account' --output text)
+    export BUCKET_FOR_KOPS_STATE=312-k8s-kops-state-${account}
+    export KOPS_STATE_STORE="s3://$BUCKET_FOR_KOPS_STATE"
     export CLUSTER_NAME=312-kops.k8s.local
     kops delete cluster --name ${CLUSTER_NAME} --yes
 
