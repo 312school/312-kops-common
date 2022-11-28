@@ -23,8 +23,8 @@
         # it could take up to 10 mins for the cluster to be ready, but usually takes less than 5 mins.
 
     # verify that everything is running properly
-    kubectl get nodes
-    kubectl get po --all-namespaces
+        kubectl get nodes
+        kubectl get po --all-namespaces
 
 ## To reconfigure kubeconfig if getting unauthorized for kubectl commands
     # make sure you have right credentials in ~/.aws/credentials
