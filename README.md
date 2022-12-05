@@ -63,7 +63,7 @@
     - Master and Worker nodes use t3.medium type which is the minimum for it's needs. Spot instances typically run %70 cheaper than on-demand.
     - EBS volumes(AWS has 30GB free tier limit, and $0.08/GB-month afterwards):
         - master node has 3 volumes: 1 for itself - 10GB. 2 for etcd stores - each 2GB.
-        - worker nodes have 1 volume each - 12GB.
+        - worker nodes have 1 volume each - 13GB.
     - **Cost estimates will depend on spot instance pricing in a current market.**
         - EBS volumes cost should very low since you almost fall under free tier (34GB in total, free tier is 30GB)
         - ELB created for exposing Kube API server publicly falls under free tier if you don't run additional load balancers
