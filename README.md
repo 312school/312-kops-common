@@ -3,8 +3,10 @@
 
 ## Prerequisites
     # install kops
-        https://kops.sigs.k8s.io/getting_started/install/
-            MacOS users can install it with brew: `brew update && brew install kops`
+        # MacOS users:
+            brew update && brew install kops
+        # Windows users using WSL2 Ubuntu, follow the official guide for Linux installation
+            https://kops.sigs.k8s.io/getting_started/install/
     # install aws cli, if you don't have it
         https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
     # install kubectl, if you don't have it
