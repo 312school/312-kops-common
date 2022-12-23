@@ -4,6 +4,7 @@
 ## Prerequisites
     # install kops
         https://kops.sigs.k8s.io/getting_started/install/
+            MacOS users can install it with brew: `brew update && brew install kops`
     # install aws cli, if you don't have it
         https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
     # install kubectl, if you don't have it
@@ -52,6 +53,7 @@
 - Both Master and Worker nodes are launched in separate AutoScaling Groups
     - Stopping master and worker nodes manually will only cause AutoScaling Group to create more EC2s as a replacement
         - so proper way to reduce costs is scaling in the ASG group sizes down to 0 (zero)
+        - note that once you scale the ASG down to 0, the ASG nodes might take time to actually get terminated
     ![Screenshot 2022-11-21 at 8 53 15 PM](https://user-images.githubusercontent.com/43100287/203209740-69566769-1573-49bb-a7d5-d5e314a689fe.png)
 
 - **Cost of the Resources Disclaimer**:
