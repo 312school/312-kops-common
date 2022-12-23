@@ -5,7 +5,7 @@
     # install kops
         # MacOS users:
             brew update && brew install kops
-        # Windows users using WSL2 Ubuntu, follow the official guide for Linux installation
+        # Windows users using WSL2 Ubuntu, follow the official guide for Linux-based installation
             https://kops.sigs.k8s.io/getting_started/install/
     # install aws cli, if you don't have it
         https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
