@@ -18,6 +18,8 @@ spec:
     - encryptedVolume: true
       instanceGroup: master-us-east-1c
       name: a
+      volumeType: gp3
+      volumeSize: 2
     memoryRequest: 100Mi
     name: main
   - cpuRequest: 100m
@@ -25,6 +27,8 @@ spec:
     - encryptedVolume: true
       instanceGroup: master-us-east-1c
       name: a
+      volumeType: gp3
+      volumeSize: 2
     memoryRequest: 100Mi
     name: events
   iam:
