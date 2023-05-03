@@ -21,7 +21,10 @@ buckets:
 	$(aws) s3api create-bucket --bucket $(kops_bucket)
 	$(aws) s3api put-bucket-versioning --bucket $(kops_bucket) --versioning-configuration Status=Enabled
 	# creating separate bucket for oidc store, will be used by serviceaccount+oidc integrations
-	$(aws) s3api create-bucket --bucket $(oidc_bucket) --acl public-read
+	$(aws) s3api create-bucket --bucket $(oidc_bucket)
+	$(aws) s3api put-public-access-block --bucket $(oidc_bucket) --public-access-block-configuration "BlockPublicPolicy=false"
+	$(aws) s3api put-bucket-ownership-controls --bucket $(oidc_bucket) --ownership-controls="Rules=[{ObjectOwnership=BucketOwnerPreferred}]"
+	$(aws) s3api put-bucket-acl --bucket $(oidc_bucket) --acl public-read
 
 dry-run:
 	# dry-run cluster and adjust configs
