@@ -83,7 +83,7 @@ spec:
   minSize: 1
   maxPrice: "0.0418"   # to use on-demand instead, just comment out this line
   role: Master
-  rootVolumeSize: 10
+  rootVolumeSize: 15
   subnets:
   - us-east-1c
 
@@ -104,6 +104,6 @@ spec:
   maxSize: 2
   minSize: 2
   role: Node
-  rootVolumeSize: 13
+  rootVolumeSize: 15
   subnets:
   - us-east-1c
