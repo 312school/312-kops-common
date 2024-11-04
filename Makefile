@@ -5,7 +5,7 @@ aws := aws --region $(region)
 account := $(shell aws sts get-caller-identity --output text --query 'Account')
 
 cluster = 312-kops.k8s.local
-version = 1.25.4
+version = 1.30.1
 kops_bucket = 312-k8s-kops-state-$(account)
 oidc_bucket = 312-k8s-kops-oidc-store-$(account)
 kops := kops --state=s3://$(kops_bucket)
